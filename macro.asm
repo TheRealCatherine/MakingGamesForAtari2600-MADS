@@ -22,21 +22,5 @@ VSLOOP		sta WSYNC           ; 1st '0' bit resets Vsync, 2nd '0' bit exit loop
 .ENDM
 
 .MACRO Sleep cycles
-		scycles = :cycles
-                .IF scycles < 2
-                	.error "MACRO ERROR: 'SLEEP': Duration must be > 1"
-                .ENDIF
-
-                .IF scycles & 1
-	                .IFDEF NO_ILLEGAL_OPCODES
-                        	nop 0
-                    	.ELSE
-                        	bit VSYNC
-                    	.ENDIF
-			SBB scycles 3
-                .ENDIF
-            
-                .rept scycles / 2
-                    nop
-                .endr
+		#cycle #:cycles
 .ENDM

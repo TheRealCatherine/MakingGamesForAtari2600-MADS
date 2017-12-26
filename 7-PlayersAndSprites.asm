@@ -2,7 +2,7 @@
 
 	icl "vcs.asm"
 	icl "macro.asm"
-
+	opt h-f+l+
 	org  $f000
 	
 ; Sprites are a tricky beast on the 2600.
